@@ -1,32 +1,38 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
 	content: ["./src/**/*.{js,jsx,ts,tsx}"],
-
 	theme: {
 		colors: {
-			colorTwo: "#6A8DAB",
-			colorFive: "#F6CBD1",
-			colorFive: "#7B668E",
-			colorFive: "#A593B3",
+			colorOne: "#6A8DAB",
+			colorTwo: "#F6CBD1",
+			colorThree: "#7B668E",
+			colorFour: "#A593B3",
 			colorFive: "#5C4A6E",
+			colorSix: "#CADFFD",
+			colorSeven: "#C3BEEF",
+			colorEight: "#CCA9E8",
+			colorNine: "#CDB4D8",
+			colorTen: "#FFC8DD",
+			colorEleven: "#FFAFCC",
+			colorTwelve: "#BDE0FE",
+			colorThirteen: "#A2D2FF",
 		},
 		fontFamily: {
-			fugaz: ["Fugaz One", "sans-serif"],
-			racing: ["Racing Sans One", "sans-serif"],
-			zilla: ["Zilla Slab", "serif"],
-			russo: ["Russo One", "sans-serif"],
-			bebas: ["Bebas Neue", "sans-serif"],
-			oswald: ["Oswald", "sans-serif"],
-			monoTwo: ["Roboto Mono", "monospace"],
+			sans: ["Open Sans", "sans-serif"],
+			serif: ["Playfair Display", "serif"],
+			mono: ["Montserrat", "sans-serif"],
+			satisfy: ["Satisfy", "cursive"],
+			greatVibes: ["Great Vibes", "cursive"],
+			poppins: ["Poppins", "sans-serif"],
 		},
 		extend: {
 			transitionDuration: {
 				2000: "2000ms",
 			},
 			boxShadow: {
-				"shadow-colorTwo":
+				"shadow-colorOne":
 					"0 0 5px #00A8E8, 0 0 10px #00A8E8, 0 0 20px #00A8E8, 0 0 40px #00A8E8",
-				"shadow-colorFive":
+				"shadow-colorTwo":
 					"0 0 5px #003459, 0 0 10px #003459, 0 0 20px #003459, 0 0 40px #003459",
 			},
 		},
