@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
 import { loginActions } from "../store/login/actions";
+import Header from "../components/header";
 
 const Login = () => {
 	const [isLoginForm, setIsLoginForm] = useState(true);
@@ -41,15 +42,18 @@ const Login = () => {
 	};
 
 	return (
-		<div className="min-h-screen w-full flex items-center justify-center p-4 bg-gradient-to-br from-colorOne via-colorSix to-colorTwo">
+		<div className="min-h-screen w-full flex flex-col items-center justify-center p-4 bg-gradient-to-br from-colorOne via-colorSix to-colorTwo">
+			<h1 className="font-greatVibes text-5xl font-bold text-colorFive tracking-wider drop-shadow-md -mt-4 mb-8">
+				BuJo
+			</h1>
 			<div className="w-full max-w-md rounded-2xl p-8 text-white relative border border-colorFive bg-white/10 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(31,38,135,0.37)] ring-1 ring-white/10">
-				<div className="flex justify-center mb-6">
+				<div className="flex justify-center mb-3">
 					<button
 						onClick={() => {
 							setIsLoginForm(true);
 							setShowForgotPasswordForm(false);
 						}}
-						className={`px-6 py-2 rounded-l-lg transition-all duration-300 ${
+						className={`px-6 py-2 rounded-l-lg transition-all duration-300 font-mono ${
 							isLoginForm && !showForgotPasswordForm
 								? "underline font-semibold"
 								: "hover:bg-white/10"
@@ -62,7 +66,7 @@ const Login = () => {
 							setIsLoginForm(false);
 							setShowForgotPasswordForm(false);
 						}}
-						className={`px-6 py-2 rounded-r-lg transition-all duration-300 ${
+						className={`px-6 py-2 rounded-r-lg transition-all duration-300 font-mono ${
 							!isLoginForm && !showForgotPasswordForm
 								? "underline font-semibold"
 								: "hover:bg-white/10"
@@ -72,7 +76,7 @@ const Login = () => {
 					</button>
 				</div>
 
-				<h2 className="text-2xl font-bold text-center mb-6">
+				<h2 className="text-2xl font-bold text-center mb-6 font-poppins">
 					{showForgotPasswordForm
 						? "Reset Your Password"
 						: isLoginForm
@@ -101,7 +105,7 @@ const Login = () => {
 									/>
 									<button
 										type="submit"
-										className="w-full py-3 rounded-lg bg-white/30 hover:bg-white/40 font-semibold transition-all duration-300"
+										className="w-full py-3 rounded-lg bg-white/30 hover:bg-white/40 font-semibold transition-all duration-300 font-poppins border border-colorThree hover:bg-colorSix"
 									>
 										Send Reset Link
 									</button>
@@ -156,7 +160,7 @@ const Login = () => {
 									)}
 
 									{isLoginForm && (
-										<div className="flex justify-between text-sm">
+										<div className="flex justify-between text-sm font-mono">
 											<label className="flex items-center">
 												<input
 													type="checkbox"
@@ -171,7 +175,7 @@ const Login = () => {
 														true
 													)
 												}
-												className="text-white/80 hover:underline"
+												className="font-mono hover:underline "
 											>
 												Forgot password?
 											</button>
@@ -181,7 +185,7 @@ const Login = () => {
 									<button
 										type="submit"
 										disabled={isSubmitting}
-										className="w-full py-3 rounded-lg bg-white/30 hover:bg-white/40 font-semibold transition-all duration-300"
+										className="w-full py-3 rounded-lg bg-white/30 hover:bg-white/40 font-semibold transition-all duration-300 font-poppins border border-colorThree hover:bg-colorSix"
 									>
 										{isSubmitting
 											? "Loading..."
@@ -221,7 +225,7 @@ const Login = () => {
 					<div className="mt-6 text-center text-sm">
 						<button
 							onClick={() => setShowForgotPasswordForm(false)}
-							className="underline"
+							className="underline font-mono"
 						>
 							Back to Sign In
 						</button>
