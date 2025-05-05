@@ -3,6 +3,7 @@ import {
 	Routes,
 	Route,
 	useLocation,
+	Navigate,
 } from "react-router-dom";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import Header from "./components/header";
@@ -13,9 +14,11 @@ import Login from "./pages/login";
 function Layout({ children }: { children: React.ReactNode }) {
 	const location = useLocation();
 
+	const showNavAndHeader = ["/", "/home"].includes(location.pathname);
+
 	return (
 		<>
-			{location.pathname === "/home" && (
+			{showNavAndHeader && (
 				<>
 					<Navbar />
 					<Header />
@@ -26,13 +29,28 @@ function Layout({ children }: { children: React.ReactNode }) {
 	);
 }
 
+// Simulated auth check (can be replaced with context, etc.)
+function isAuthenticated() {
+	return localStorage.getItem("token") !== null;
+}
+
+// Component for /
+function RootRedirect() {
+	return isAuthenticated() ? (
+		<Navigate to="/home" replace />
+	) : (
+		<Navigate to="/login" replace />
+	);
+}
+
 function App() {
 	return (
 		<Router>
 			<Layout>
 				<Routes>
-					<Route path="/login" element={<Login />} />
+					<Route path="/" element={<RootRedirect />} />
 					<Route path="/home" element={<Home />} />
+					<Route path="/login" element={<Login />} />
 					{/* <Route
 						path="/account"
 						element={
