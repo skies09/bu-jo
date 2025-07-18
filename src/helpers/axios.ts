@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import createAuthRefreshInterceptor from "axios-auth-refresh";
 import {
 	getAccessToken,
@@ -13,20 +13,18 @@ const axiosService = axios.create({
 	},
 });
 
-axiosService.interceptors.request.use(async (config) => {
-	/**
-	 * Retrieving the access and refresh tokens from the local storage
-	 */
-	config.headers.Authorization = `Bearer ${getAccessToken()}`;
+axiosService.interceptors.request.use(async (config: AxiosRequestConfig) => {
+	config.headers = config.headers || {};
+	(config.headers as any).Authorization = `Bearer ${getAccessToken()}`;
 	return config;
 });
 
 axiosService.interceptors.response.use(
-	(res) => Promise.resolve(res),
+	(res: AxiosResponse) => Promise.resolve(res),
 	(err) => Promise.reject(err)
 );
 
-const refreshAuthLogic = async (failedRequest) => {
+const refreshAuthLogic = async (failedRequest: any): Promise<void> => {
 	return axios
 		.post(
 			"/auth/refresh/",
@@ -37,7 +35,7 @@ const refreshAuthLogic = async (failedRequest) => {
 				baseURL: process.env.REACT_APP_BUJO_BASE_URL,
 			}
 		)
-		.then((resp) => {
+		.then((resp: AxiosResponse) => {
 			const { access } = resp.data;
 			failedRequest.response.config.headers["Authorization"] =
 				"Bearer " + access;
@@ -57,8 +55,8 @@ const refreshAuthLogic = async (failedRequest) => {
 
 createAuthRefreshInterceptor(axiosService, refreshAuthLogic);
 
-export function fetcher(url) {
-	return axiosService.get(url).then((res) => res.data);
+export function fetcher<T = any>(url: string): Promise<T> {
+	return axiosService.get<T>(url).then((res) => res.data);
 }
 
 export default axiosService;

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
-import { loginActions } from "../store/login/actions";
-import Header from "../components/header";
+import { useLoginActions } from "../store/login/actions";
 
 const Login = () => {
+	const { login, register, forgotPassword } = useLoginActions();
 	const [isLoginForm, setIsLoginForm] = useState(true);
 	const [showPassword, setShowPassword] = useState(false);
 	const [isSubmitting, setIsSubmitting] = useState(false);
@@ -16,14 +16,14 @@ const Login = () => {
 
 		try {
 			if (showForgotPasswordForm) {
-				await loginActions.forgotPassword({ email: values.email });
+				await forgotPassword({ email: values.email });
 			} else if (isLoginForm) {
-				await loginActions.login({
-					username: values.username,
+				await login({
+					email: values.email,
 					password: values.password,
 				});
 			} else {
-				await loginActions.register({
+				await register({
 					username: values.username,
 					email: values.email,
 					password: values.password,
@@ -33,7 +33,9 @@ const Login = () => {
 		} catch (err: any) {
 			if (err.message) {
 				setErrorMessage(
-					err.request?.response || "Something went wrong"
+					err?.response?.data?.detail ||
+						err?.message ||
+						"Something went wrong"
 				);
 			}
 		}
@@ -112,22 +114,21 @@ const Login = () => {
 								</>
 							) : (
 								<>
-									{!isLoginForm && (
-										<Field
-											name="email"
-											type="email"
-											placeholder="Email"
-											className="w-full px-4 py-3 rounded-lg bg-white/20 placeholder-white/70 focus:ring-2 focus:ring-white focus:outline-none"
-										/>
-									)}
-
 									<Field
-										name="username"
-										type="text"
-										placeholder="Username"
+										name="email"
+										type="email"
+										placeholder="Email"
 										className="w-full px-4 py-3 rounded-lg bg-white/20 placeholder-white/70 focus:ring-2 focus:ring-white focus:outline-none"
 									/>
 
+									{!isLoginForm && (
+										<Field
+											name="username"
+											type="text"
+											placeholder="Username"
+											className="w-full px-4 py-3 rounded-lg bg-white/20 placeholder-white/70 focus:ring-2 focus:ring-white focus:outline-none"
+										/>
+									)}
 									<div className="relative">
 										<Field
 											name="password"

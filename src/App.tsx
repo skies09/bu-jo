@@ -10,6 +10,7 @@ import Header from "./components/header";
 import Navbar from "./components/navbar";
 import Home from "./pages/home";
 import Login from "./pages/login";
+import Diary from "./pages/diary";
 
 function Layout({ children }: { children: React.ReactNode }) {
 	const location = useLocation();
@@ -29,9 +30,37 @@ function Layout({ children }: { children: React.ReactNode }) {
 	);
 }
 
-// Simulated auth check (can be replaced with context, etc.)
+function isTokenValid(token: string | null): boolean {
+	if (!token) return false;
+
+	try {
+		// JWT format: header.payload.signature
+		const payloadBase64 = token.split(".")[1];
+		if (!payloadBase64) return false;
+
+		// Decode base64 payload
+		const decoded = JSON.parse(atob(payloadBase64));
+		const exp = decoded.exp; // expiry in seconds since epoch
+
+		if (!exp) return false;
+
+		// Check if current time (in seconds) is before expiry
+		return Date.now() / 1000 < exp;
+	} catch {
+		return false;
+	}
+}
+
 function isAuthenticated() {
-	return localStorage.getItem("token") !== null;
+	try {
+		const storedAuth = localStorage.getItem("auth");
+		if (!storedAuth) return false;
+		const auth = JSON.parse(storedAuth);
+		if (!auth || !auth.access || !auth.user) return false;
+		return isTokenValid(auth.access);
+	} catch {
+		return false;
+	}
 }
 
 // Component for /
@@ -51,6 +80,14 @@ function App() {
 					<Route path="/" element={<RootRedirect />} />
 					<Route path="/home" element={<Home />} />
 					<Route path="/login" element={<Login />} />
+					<Route
+						path="/diary"
+						element={
+							<ProtectedRoute>
+								<Diary />
+							</ProtectedRoute>
+						}
+					/>
 					{/* <Route
 						path="/account"
 						element={
