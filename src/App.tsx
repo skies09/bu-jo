@@ -12,15 +12,16 @@ import Login from "./pages/login";
 import Diary from "./pages/diary";
 import Navbar from "./components/navbar";
 import TopNav from "./components/topNav";
+import Profile from "./pages/profile";
 
 function Layout({ children }: { children: React.ReactNode }) {
 	const location = useLocation();
 
-	const showNavAndHeader = ["/", "/home"].includes(location.pathname);
+	const removeNavAndHeader = ["/", "/login"].includes(location.pathname);
 
 	return (
 		<>
-			{showNavAndHeader && (
+			{!removeNavAndHeader && (
 				<>
 					<Navbar />
 					<TopNav />
@@ -81,6 +82,7 @@ function App() {
 					<Route path="/" element={<RootRedirect />} />
 					<Route path="/home" element={<Home />} />
 					<Route path="/login" element={<Login />} />
+					<Route path="/profile" element={<Profile />} />
 					<Route
 						path="/diary"
 						element={

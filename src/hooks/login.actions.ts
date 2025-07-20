@@ -93,7 +93,7 @@ function useLoginActions() {
 
 	// Logout the user
 	async function logout(): Promise<void> {
-		await axiosService.post(`${baseURL}/auth/logout/`, {
+		await axiosService.post(`${baseURL}auth/logout/`, {
 			refresh: getRefreshToken(),
 		});
 		localStorage.removeItem("auth");
