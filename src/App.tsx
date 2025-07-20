@@ -6,11 +6,12 @@ import {
 	Navigate,
 } from "react-router-dom";
 import ProtectedRoute from "./routes/ProtectedRoute";
-import Header from "./components/header";
-import Navbar from "./components/navbar";
+
 import Home from "./pages/home";
 import Login from "./pages/login";
 import Diary from "./pages/diary";
+import Navbar from "./components/navbar";
+import TopNav from "./components/topNav";
 
 function Layout({ children }: { children: React.ReactNode }) {
 	const location = useLocation();
@@ -22,7 +23,7 @@ function Layout({ children }: { children: React.ReactNode }) {
 			{showNavAndHeader && (
 				<>
 					<Navbar />
-					<Header />
+					<TopNav />
 				</>
 			)}
 			{children}

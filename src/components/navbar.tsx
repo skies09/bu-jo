@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const UserIcon = () => (
+export const UserIcon = () => (
 	<svg
 		className="w-7 h-7"
 		fill="none"
@@ -12,7 +12,7 @@ const UserIcon = () => (
 		<path strokeWidth="2" d="M4 20c0-2.5 3.5-4 8-4s8 1.5 8 4" />
 	</svg>
 );
-const NotificationIcon = () => (
+export const NotificationIcon = () => (
 	<svg
 		className="w-7 h-7"
 		fill="none"
@@ -56,17 +56,8 @@ const Navbar = () => {
 		<>
 			{/* Desktop Side Panel */}
 			<div className="hidden md:fixed md:flex md:flex-col md:w-56 md:h-screen md:bg-colorTwo md:justify-between md:items-center md:py-8 md:z-50">
-				{/* Logo */}
-				<div className="flex flex-col items-center w-full">
-					<Link
-						to="/"
-						className="font-satisfy text-3xl font-bold text-colorOne tracking-wider drop-shadow-md mb-8"
-					>
-						BuJo
-					</Link>
-				</div>
 				{/* Nav Links */}
-				<nav className="flex flex-col space-y-6 w-full items-center flex-1">
+				<nav className="flex flex-col space-y-6 w-full items-center flex-1 pt-16">
 					{navLinks.map((link) => (
 						<Link
 							key={link.to}
@@ -77,15 +68,10 @@ const Navbar = () => {
 						</Link>
 					))}
 				</nav>
-				{/* User & Notification Icons */}
-				<div className="flex space-x-4 items-center mb-2">
-					<NotificationIcon />
-					<UserIcon />
-				</div>
 			</div>
 
 			{/* Mobile Top Menu */}
-			<div className="md:hidden w-full h-16 bg-colorTwo fixed top-0 z-50 flex items-center justify-between px-2">
+			<div className="md:hidden w-full h-12 bg-colorTwo fixed top-0 z-50 flex items-center justify-between px-2">
 				{/* Hamburger */}
 				<button
 					onClick={() => setIsOpen(!isOpen)}
@@ -101,10 +87,6 @@ const Navbar = () => {
 					BuJo
 				</Link>
 				{/* Icons Right */}
-				<div className="flex items-center space-x-3">
-					<NotificationIcon />
-					<UserIcon />
-				</div>
 			</div>
 
 			{/* Mobile Slide-out Menu */}
