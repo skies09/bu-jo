@@ -71,7 +71,7 @@ const Navbar = () => {
 			</div>
 
 			{/* Mobile Top Menu */}
-			<div className="md:hidden w-full h-12 bg-colorTwo fixed top-0 z-50 flex items-center justify-between px-2">
+			<div className="md:hidden w-full h-16 bg-colorTwo fixed top-0 z-50 flex items-center justify-between px-2">
 				{/* Hamburger */}
 				<button
 					onClick={() => setIsOpen(!isOpen)}
@@ -81,12 +81,16 @@ const Navbar = () => {
 				</button>
 				{/* Logo Centered */}
 				<Link
-					to="/"
+					to="/home"
 					className="absolute left-1/2 transform -translate-x-1/2 font-satisfy text-2xl font-bold text-colorOne tracking-wider drop-shadow-md"
 				>
 					BuJo
 				</Link>
 				{/* Icons Right */}
+				<div className="flex items-center space-x-4">
+					<NotificationIcon />
+					<UserIcon />
+				</div>
 			</div>
 
 			{/* Mobile Slide-out Menu */}

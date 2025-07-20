@@ -4,7 +4,7 @@ import { NotificationIcon, UserIcon } from "./navbar";
 
 export default function TopNav() {
 	return (
-		<div className="w-full">
+		<div className="w-full hidden md:block">
 			{/* Top Bar */}
 			<div className="fixed top-0 left-0 w-full h-14 bg-colorTwo flex items-center justify-between px-6 z-50 shadow-md">
 				<Link

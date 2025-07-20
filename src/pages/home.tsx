@@ -1,7 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { getUser } from "../hooks/login.actions";
 
 const Home = () => {
+	const user = getUser();
+	const displayName = user?.name || user?.username || "to BuJo";
 	return (
 		<div
 			id="home"
@@ -9,6 +11,9 @@ const Home = () => {
 			style={{ minHeight: "100vh" }}
 		>
 			<div className="w-full px-4 md:px-8 mt-20 md:mt-0 box-border">
+				<p className="text-3xl md:text-4xl font-poppins font-semibold text-colorTwo mb-6 mt-8 md:mt-20 md:ml-56">
+					Welcome{displayName ? `, ${displayName}` : " to BuJo"}
+				</p>
 				{/* Top Row: Grid of 4 (1x4 on desktop, 2x2 on mobile/tablet) */}
 				<div className="mb-8 md:ml-56">
 					<div className="grid grid-cols-2 md:grid-cols-4 gap-6 h-40 md:h-60">
