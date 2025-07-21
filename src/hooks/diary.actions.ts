@@ -89,7 +89,8 @@ export function useDiaryApi() {
 		const user = parseJwt(token);
 		if (!user || !user.user_id) throw new Error("Invalid token payload");
 
-		const res = await fetch(`${baseURL}diary/${String(userId)}`, {
+		// FIX: Use /diary/ endpoint for list, not /diary/{userId}
+		const res = await fetch(`${baseURL}diary/`, {
 			headers: { Authorization: `Bearer ${token}` },
 		});
 
@@ -112,7 +113,10 @@ export function useDiaryApi() {
 				`${baseURL}diary/`,
 				data,
 				{
-					headers: { Authorization: `Bearer ${token}` },
+					headers: {
+						Authorization: `Bearer ${token}`,
+						"Content-Type": "application/json",
+					},
 				}
 			);
 			checkLoggedIn(res.status);
