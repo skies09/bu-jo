@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { getUser } from "../hooks/login.actions";
+import ProfileSection from "../components/profileComponents/ProfileSection";
 
 const profileTabs = [
 	{ label: "Profile", key: "profile" },
@@ -43,30 +44,8 @@ const Profile = () => {
 							</button>
 						))}
 					</div>
-					<div className="bg-white/80 rounded-b-xl shadow-2xl p-8 w-full max-w-4xl min-h-[300px]">
-						{activeTab === "profile" && (
-							<>
-								<h1 className="text-3xl font-bold mb-4 text-colorOne">
-									Profile
-								</h1>
-								<p className="mb-2 text-lg">
-									<span className="font-semibold">Name:</span>{" "}
-									{user.name || "-"}
-								</p>
-								<p className="mb-2 text-lg">
-									<span className="font-semibold">
-										Username:
-									</span>{" "}
-									{user.username}
-								</p>
-								<p className="mb-2 text-lg">
-									<span className="font-semibold">
-										Email:
-									</span>{" "}
-									{user.email}
-								</p>
-							</>
-						)}
+					<div className="bg-white/80 rounded-b-xl p-8 w-full max-w-4xl min-h-[300px]">
+						{activeTab === "profile" && <ProfileSection />}
 						{activeTab === "about" && (
 							<>
 								<h1 className="text-2xl font-bold mb-4 text-colorOne">

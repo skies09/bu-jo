@@ -5,6 +5,36 @@
 html {
 	overscroll-behavior: none;
 }
+
+/* Theme variables */
+:root {
+  --color-bg: #f8fafc;
+  --color-text: #22223b;
+  --color-primary: #3b82f6;
+  --color-accent: #fbbf24;
+}
+
+body[data-theme="auto"] {
+  --color-bg: #8E9AAF;
+  --color-text: #CBC0D3;
+  --color-primary: #DEE2FF;
+  --color-accent: #EFD3D7;
+}
+
+body[data-theme="cosy"] {
+  --color-bg: #BDB2FF;
+  --color-text: #FFADAD;
+  --color-primary: #9BF6FF;
+  --color-accent: #FDFFB6;
+}
+
+body[data-theme="elite"] {
+  --color-bg: #3C1642;
+  --color-text: #086375;
+  --color-primary: #1DD3B0;
+  --color-accent: #B2FF9E;
+}
+
 body {
 	margin: 0;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
@@ -13,9 +43,21 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	overscroll-behavior: none;
+	background: var(--color-bg);
+	color: var(--color-text);
 }
 
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
 		monospace;
+}
+
+/* Example usage for buttons, etc. */
+.button-primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+.button-accent {
+  background: var(--color-accent);
+  color: #fff;
 }

@@ -14,6 +14,8 @@ import Navbar from "./components/navbar";
 import TopNav from "./components/topNav";
 import Profile from "./pages/profile";
 import Bullet from "./pages/bullet";
+import React from "react";
+import { useSelector } from "react-redux";
 
 export const routeConfig = [
 	{ path: "/", element: <RootRedirect />, protected: false },
@@ -84,32 +86,40 @@ function RootRedirect() {
 	);
 }
 
-function App() {
+const App = () => {
+	const theme = useSelector((state: any) => state.theme);
+	React.useEffect(() => {
+		// Set a data-theme attribute on the body for theme switching
+		document.body.setAttribute("data-theme", theme);
+	}, [theme]);
+
 	return (
 		<Router>
 			<Layout>
-				<Routes>
-					{routeConfig.map(
-						({ path, element, protected: isProtected }) => (
-							<Route
-								key={path}
-								path={path}
-								element={
-									isProtected ? (
-										<ProtectedRoute>
-											{element}
-										</ProtectedRoute>
-									) : (
-										element
-									)
-								}
-							/>
-						)
-					)}
-				</Routes>
+				<div className={`min-h-screen`}>
+					<Routes>
+						{routeConfig.map(
+							({ path, element, protected: isProtected }) => (
+								<Route
+									key={path}
+									path={path}
+									element={
+										isProtected ? (
+											<ProtectedRoute>
+												{element}
+											</ProtectedRoute>
+										) : (
+											element
+										)
+									}
+								/>
+							)
+						)}
+					</Routes>
+				</div>
 			</Layout>
 		</Router>
 	);
-}
+};
 
 export default App;

@@ -1,7 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { setLoginData } from "../../hooks/login.actions";
 
 // Login actions
 export const setLogin = (user: any) => ({
@@ -9,11 +8,29 @@ export const setLogin = (user: any) => ({
 	payload: user,
 });
 
+// Theme actions
+export const setTheme = (theme: string) => ({
+	type: "SET_THEME",
+	payload: theme,
+});
+
 // Custom hook that returns login actions
 export const useLoginActions = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const baseURL = process.env.REACT_APP_BUJO_BASE_URL;
+
+	// Helper to store login data in localStorage
+	const setLoginData = (data: any) => {
+		localStorage.setItem(
+			"auth",
+			JSON.stringify({
+				access: data.access,
+				refresh: data.refresh,
+				user: data.user,
+			})
+		);
+	};
 
 	const login = async (data: any) => {
 		try {

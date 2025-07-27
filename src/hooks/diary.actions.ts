@@ -109,7 +109,6 @@ export function useDiaryApi() {
 	const createEntry = async (data: DiaryEntryCreate): Promise<DiaryEntry> => {
 		setLoading(true);
 		setError(null);
-		console.log(data, "data");
 		try {
 			const token = getToken();
 			const res: AxiosResponse<DiaryEntry> = await axios.post(

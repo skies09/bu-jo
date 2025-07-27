@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
-import { useLoginActions } from "../store/login/actions";
+import { useLoginActions } from "../hooks/login.actions";
 
 const Login = () => {
 	const { login, register, forgotPassword } = useLoginActions();

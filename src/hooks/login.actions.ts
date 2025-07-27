@@ -2,11 +2,10 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios, { AxiosResponse } from "axios";
 import axiosService from "../helpers/axios";
-import { setLogin } from "../store/login/actions";
 
 // Interfaces for user and login data
 export interface User {
-	id: string;
+	id: number;
 	username: string;
 	email: string;
 	name?: string;
@@ -40,6 +39,12 @@ function useLoginActions() {
 	const navigate = useNavigate();
 	const baseURL = process.env.REACT_APP_BUJO_BASE_URL;
 
+	// Define setLogin locally to avoid circular imports
+	const setLogin = (user: any) => ({
+		type: "SET_LOGIN",
+		payload: user,
+	});
+
 	// Helper to set auth header on both axios instances
 	function setAuthHeader(token: string | null): void {
 		if (token) {
@@ -57,7 +62,7 @@ function useLoginActions() {
 	async function login(data: LoginData): Promise<void> {
 		try {
 			const res: AxiosResponse<LoginResponse> = await axios.post(
-				`${baseURL}api/auth/login/`,
+				`${baseURL}auth/login/`,
 				data
 			);
 			setLoginData(res.data);
@@ -70,9 +75,9 @@ function useLoginActions() {
 	}
 
 	// Edit the user
-	async function edit(data: EditUserData, userId: string): Promise<void> {
+	async function edit(data: EditUserData, userId: number): Promise<void> {
 		const res: AxiosResponse<User> = await axiosService.patch(
-			`${baseURL}api/user/${userId}/`,
+			`${baseURL}user/${userId}/`,
 			data,
 			{
 				headers: {
@@ -101,11 +106,34 @@ function useLoginActions() {
 		navigate("/login");
 	}
 
+	// Register the user
+	async function register(data: any): Promise<any> {
+		try {
+			const res = await axios.post(`${baseURL}auth/register/`, data);
+			// Optionally auto-login after registration:
+			// setLoginData(res.data);
+			// dispatch(setLogin(res.data.user));
+			// navigate("/home");
+			return res;
+		} catch (error) {
+			console.error("Registration error:", error);
+			throw error;
+		}
+	}
+
+	// Forgot password
+	async function forgotPassword(data: any): Promise<void> {
+		console.log("Sending reset link", data);
+		// Implement forgot password logic here
+	}
+
 	return {
 		login,
 		logout,
 		edit,
 		setAuthHeader,
+		register,
+		forgotPassword,
 	};
 }
 

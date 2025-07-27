@@ -16,6 +16,25 @@ module.exports = {
 			colorEleven: "#FFAFCC",
 			colorTwelve: "#BDE0FE",
 			colorThirteen: "#A2D2FF",
+			// Theme-specific colors
+			auto: {
+				bg: "#8E9AAF",
+				text: "#CBC0D3",
+				primary: "#DEE2FF",
+				accent: "#EFD3D7",
+			},
+			cosy: {
+				bg: "#BDB2FF",
+				text: "#FFADAD",
+				primary: "#9BF6FF",
+				accent: "#FDFFB6",
+			},
+			elite: {
+				bg: "#3C1642",
+				text: "#086375",
+				primary: "#1DD3B0",
+				accent: "#B2FF9E",
+			},
 		},
 		fontFamily: {
 			sans: ["Open Sans", "sans-serif"],
