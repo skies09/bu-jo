@@ -21,7 +21,7 @@ const Profile = () => {
 	return (
 		<div
 			id="profile"
-			className="w-full min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-colorOne via-colorSix to-colorTwo"
+			className="w-full min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-colorThree via-colorSix to-colorTwo"
 			style={{ minHeight: "100vh" }}
 		>
 			<div className="pl-56 flex justify-center items-center">

@@ -40,10 +40,10 @@ export default function TopNav() {
 	return (
 		<div className="w-full hidden md:block">
 			{/* Top Bar */}
-			<div className="fixed top-0 left-0 w-full h-14 bg-colorTwo flex items-center justify-between px-6 z-50 shadow-md">
+			<div className="fixed top-0 left-0 w-full h-14 flex items-center justify-between px-6 z-50 shadow-2xl">
 				<Link
 					to="/home"
-					className="font-satisfy text-2xl font-bold text-colorOne tracking-wider drop-shadow-md"
+					className="font-satisfy text-2xl font-bold text-colorSix tracking-wider drop-shadow-2xl"
 				>
 					BuJo
 				</Link>

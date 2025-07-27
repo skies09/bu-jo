@@ -13,6 +13,7 @@ export interface DiaryEntry {
 	id: number;
 	title: string;
 	content: string;
+	highlight: string;
 	date_created: string;
 	user_id: string;
 	date?: string;
@@ -21,12 +22,14 @@ export interface DiaryEntry {
 export interface DiaryEntryCreate {
 	title: string;
 	content: string;
+	highlight: string;
 	date?: string;
 }
 
 export interface DiaryEntryUpdate {
 	title?: string;
 	content?: string;
+	highlight?: string;
 	date?: string;
 }
 
@@ -106,7 +109,7 @@ export function useDiaryApi() {
 	const createEntry = async (data: DiaryEntryCreate): Promise<DiaryEntry> => {
 		setLoading(true);
 		setError(null);
-
+		console.log(data, "data");
 		try {
 			const token = getToken();
 			const res: AxiosResponse<DiaryEntry> = await axios.post(

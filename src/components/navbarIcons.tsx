@@ -62,10 +62,15 @@ export default function NavbarIcons() {
 
 	return (
 		<div className="flex items-center space-x-4 relative" ref={dropdownRef}>
-			<NotificationIcon />
+			<button
+				// onClick={() => setDropdownOpen((open) => !open)}
+				className="focus:outline-none text-colorFive"
+			>
+				<NotificationIcon />
+			</button>
 			<button
 				onClick={() => setDropdownOpen((open) => !open)}
-				className="focus:outline-none"
+				className="focus:outline-none text-colorFive"
 			>
 				<UserIcon />
 			</button>

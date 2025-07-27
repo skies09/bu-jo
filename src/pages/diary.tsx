@@ -5,6 +5,7 @@ interface DiaryEntry {
 	id: number;
 	title: string;
 	content: string;
+	highlight: string;
 	date_created: string;
 	user_id: string;
 	date?: string;
@@ -27,9 +28,11 @@ const Diary = () => {
 	const [entries, setEntries] = useState<DiaryEntry[]>([]);
 	const [newTitle, setNewTitle] = useState("");
 	const [newContent, setNewContent] = useState("");
+	const [newHighlight, setNewHighlight] = useState("");
 	const [editingId, setEditingId] = useState<number | null>(null);
 	const [editTitle, setEditTitle] = useState("");
 	const [editContent, setEditContent] = useState("");
+	const [editHighlight, setEditHighlight] = useState("");
 	const [formError, setFormError] = useState<string | null>(null);
 	const [formSuccess, setFormSuccess] = useState<string | null>(null);
 	const [selectedDate, setSelectedDate] = useState<string>(todayString);
@@ -70,19 +73,21 @@ const Diary = () => {
 		e.preventDefault();
 		setFormError(null);
 		setFormSuccess(null);
-		if (!newTitle.trim() || !newContent.trim()) {
-			setFormError("Title and content are required.");
+		if (!newTitle.trim() || !newContent.trim() || !newHighlight.trim()) {
+			setFormError("Entry is required.");
 			return;
 		}
 		try {
 			const created = await createEntry({
 				title: newTitle.trim(),
 				content: newContent.trim(),
+				highlight: newHighlight.trim(),
 				date: selectedDate,
 			});
 			setEntries((prev) => [created, ...prev]);
 			setNewTitle("");
 			setNewContent("");
+			setNewHighlight("");
 			setFormSuccess("Entry added!");
 		} catch (err) {
 			setFormError("Failed to create entry.");
@@ -94,6 +99,7 @@ const Diary = () => {
 		setEditingId(entry.id);
 		setEditTitle(entry.title);
 		setEditContent(entry.content);
+		setEditHighlight(entry.highlight);
 	};
 
 	// Cancel editing
@@ -101,6 +107,7 @@ const Diary = () => {
 		setEditingId(null);
 		setEditTitle("");
 		setEditContent("");
+		setEditHighlight("");
 		setFormError(null);
 	};
 
@@ -115,6 +122,7 @@ const Diary = () => {
 			const updated = await updateEntry(id, {
 				title: editTitle.trim(),
 				content: editContent.trim(),
+				highlight: editHighlight.trim(),
 			});
 			setEntries((prev) =>
 				prev.map((entry) => (entry.id === id ? updated : entry))
@@ -132,6 +140,7 @@ const Diary = () => {
 		try {
 			await deleteEntry(id);
 			setEntries((prev) => prev.filter((entry) => entry.id !== id));
+			setFormSuccess("");
 		} catch {
 			alert("Failed to delete entry.");
 		}
@@ -163,7 +172,7 @@ const Diary = () => {
 	return (
 		<div
 			id="diary"
-			className="w-full min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-colorOne via-colorSix to-colorTwo"
+			className="w-full min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-colorThree via-colorSix to-colorTwo"
 			style={{ minHeight: "100vh" }}
 		>
 			<div className="pl-56 flex justify-center items-center">
@@ -222,10 +231,18 @@ const Diary = () => {
 								onChange={(e) => setNewContent(e.target.value)}
 								className="border rounded px-3 py-2 min-h-[100px] focus:outline-none focus:ring-2 focus:ring-blue-400"
 							/>
+							<textarea
+								placeholder="Highlight"
+								value={newHighlight}
+								onChange={(e) =>
+									setNewHighlight(e.target.value)
+								}
+								className="border rounded px-3 py-2 min-h-[60px] focus:outline-none focus:ring-2 focus:ring-blue-400"
+							/>
 							<button
 								type="submit"
 								disabled={loading}
-								className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded shadow disabled:opacity-60"
+								className="bg-blue-500 text-white border-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded shadow disabled:opacity-60"
 							>
 								{loading ? "Saving..." : "Add Entry"}
 							</button>
@@ -245,6 +262,12 @@ const Diary = () => {
 							<p className="mb-2">
 								<span className="font-semibold">Content:</span>{" "}
 								{getEntryForDate(selectedDate)?.content}
+							</p>
+							<p className="mb-2">
+								<span className="font-semibold">
+									Highlight:
+								</span>{" "}
+								{getEntryForDate(selectedDate)?.highlight}
 							</p>
 							<small className="text-gray-500">
 								Created:{" "}
@@ -351,6 +374,15 @@ const Diary = () => {
 												}
 												className="border rounded px-3 py-2 mb-2 min-h-[80px] focus:outline-none focus:ring-2 focus:ring-blue-400"
 											/>
+											<textarea
+												value={editHighlight}
+												onChange={(e) =>
+													setEditHighlight(
+														e.target.value
+													)
+												}
+												className="border rounded px-3 py-2 mb-2 min-h-[80px] focus:outline-none focus:ring-2 focus:ring-blue-400"
+											/>
 											<div className="flex gap-2">
 												<button
 													onClick={() =>
@@ -377,9 +409,6 @@ const Diary = () => {
 										</>
 									) : (
 										<>
-											<p className="text-gray-700">
-												{entry.content}
-											</p>
 											<small className="text-gray-400">
 												{new Date(
 													entry.date_created

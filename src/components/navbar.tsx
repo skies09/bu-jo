@@ -32,14 +32,14 @@ const Navbar = () => {
 	return (
 		<>
 			{/* Desktop Side Panel */}
-			<div className="hidden md:fixed md:flex md:flex-col md:w-56 md:h-screen md:bg-colorTwo md:justify-between md:items-center md:py-8 md:z-50">
+			<div className="hidden md:fixed md:flex md:flex-col md:w-56 md:h-screen md:justify-between md:items-center md:py-8 md:z-50 shadow-2xl">
 				{/* Nav Links */}
 				<nav className="flex flex-col space-y-6 w-full items-center flex-1 pt-16">
 					{navLinks.map((link) => (
 						<Link
 							key={link.to}
 							to={link.to}
-							className="text-colorOne hover:text-colorTwo font-poppins font-semibold text-lg w-full text-center py-2"
+							className="text-colorSix hover:text-colorTwo font-poppins font-semibold text-lg w-full text-center py-2"
 						>
 							{link.label}
 						</Link>
