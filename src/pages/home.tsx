@@ -7,7 +7,7 @@ const Home = () => {
 	return (
 		<div
 			id="home"
-			className="w-full min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-colorOne via-colorSix to-colorTwo overflow-x-hidden"
+			className="w-full min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-colorOne via-colorSix to-colorTwo"
 			style={{ minHeight: "100vh" }}
 		>
 			<div className="w-full px-4 md:px-8 mt-20 md:mt-0 box-border">

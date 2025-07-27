@@ -13,6 +13,16 @@ import Diary from "./pages/diary";
 import Navbar from "./components/navbar";
 import TopNav from "./components/topNav";
 import Profile from "./pages/profile";
+import Bullet from "./pages/bullet";
+
+export const routeConfig = [
+	{ path: "/", element: <RootRedirect />, protected: false },
+	{ path: "/login", element: <Login />, protected: false },
+	{ path: "/home", element: <Home />, protected: true },
+	{ path: "/profile", element: <Profile />, protected: true },
+	{ path: "/diary", element: <Diary />, protected: true },
+	{ path: "/bullet", element: <Bullet />, protected: true },
+];
 
 function Layout({ children }: { children: React.ReactNode }) {
 	const location = useLocation();
@@ -79,28 +89,23 @@ function App() {
 		<Router>
 			<Layout>
 				<Routes>
-					<Route path="/" element={<RootRedirect />} />
-					<Route path="/home" element={<Home />} />
-					<Route path="/login" element={<Login />} />
-					<Route path="/profile" element={<Profile />} />
-					<Route
-						path="/diary"
-						element={
-							<ProtectedRoute>
-								<Diary />
-							</ProtectedRoute>
-						}
-					/>
-					{/* <Route
-						path="/account"
-						element={
-							<ProtectedRoute>
-								<Route path="/" element={<Login />} />
-							</ProtectedRoute>
-						}
-					/> */}
-
-					{/* <Route path="/Contact" element={<Contact />} /> */}
+					{routeConfig.map(
+						({ path, element, protected: isProtected }) => (
+							<Route
+								key={path}
+								path={path}
+								element={
+									isProtected ? (
+										<ProtectedRoute>
+											{element}
+										</ProtectedRoute>
+									) : (
+										element
+									)
+								}
+							/>
+						)
+					)}
 				</Routes>
 			</Layout>
 		</Router>
