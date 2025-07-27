@@ -24,8 +24,8 @@ const Profile = () => {
 			className="w-full min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-colorThree via-colorSix to-colorTwo"
 			style={{ minHeight: "100vh" }}
 		>
-			<div className="pl-56 flex justify-center items-center">
-				<div className="flex flex-col items-center justify-center min-h-screen  w-full">
+			<div className="pl-0 md:pl-56 flex justify-center items-center w-full">
+				<div className="flex flex-col items-center justify-start pt-16 min-h-screen  w-full">
 					{/* Tabs */}
 					<div className="flex flex-wrap justify-center gap-2 sm:gap-4 mt-12 mb-8 w-full max-w-4xl px-2">
 						{profileTabs.map((tab) => (
@@ -35,15 +35,15 @@ const Profile = () => {
 								className={
 									`px-4 sm:px-6 py-2 rounded-t-lg font-semibold text-base sm:text-lg transition-colors duration-150 border-b-2 focus:outline-none flex-shrink` +
 									(activeTab === tab.key
-										? " bg-white text-colorOne border-colorOne shadow"
-										: " bg-white/60 text-gray-500 border-transparent hover:bg-white")
+										? " bg-white text-colorFive border-colorOne shadow"
+										: " bg-white/60 text-colorOne border-transparent hover:bg-white")
 								}
 							>
 								{tab.label}
 							</button>
 						))}
 					</div>
-					<div className="bg-white/80 rounded-b-xl shadow-lg p-8 w-full max-w-4xl min-h-[300px]">
+					<div className="bg-white/80 rounded-b-xl shadow-2xl p-8 w-full max-w-4xl min-h-[300px]">
 						{activeTab === "profile" && (
 							<>
 								<h1 className="text-3xl font-bold mb-4 text-colorOne">

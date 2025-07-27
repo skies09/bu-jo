@@ -39,7 +39,7 @@ const Navbar = () => {
 						<Link
 							key={link.to}
 							to={link.to}
-							className="text-colorSix hover:text-colorTwo font-poppins font-semibold text-lg w-full text-center py-2"
+							className="text-colorSix hover:text-colorOne font-poppins font-semibold text-lg w-full text-center py-2"
 						>
 							{link.label}
 						</Link>
@@ -48,18 +48,18 @@ const Navbar = () => {
 			</div>
 
 			{/* Mobile Top Menu */}
-			<div className="md:hidden w-full h-16 bg-colorTwo fixed top-0 z-50 flex items-center justify-between px-2">
+			<div className="md:hidden w-full h-16 fixed top-0 z-50 flex items-center justify-between px-2">
 				{/* Hamburger */}
 				<button
 					onClick={() => setIsOpen(!isOpen)}
-					className="text-colorOne focus:outline-none"
+					className="text-colorSix focus:outline-none"
 				>
 					<HamburgerIcon open={isOpen} />
 				</button>
 				{/* Logo Centered */}
 				<Link
 					to="/home"
-					className="absolute left-1/2 transform -translate-x-1/2 font-satisfy text-2xl font-bold text-colorOne tracking-wider drop-shadow-md"
+					className="absolute left-1/2 transform -translate-x-1/2 font-satisfy text-2xl font-bold text-colorSix tracking-wider drop-shadow-2xl"
 				>
 					BuJo
 				</Link>
@@ -69,12 +69,12 @@ const Navbar = () => {
 
 			{/* Mobile Slide-out Menu */}
 			{isOpen && (
-				<div className="md:hidden fixed top-16 left-0 w-full bg-colorTwo shadow-lg z-40 animate-slide-down">
+				<div className="md:hidden fixed top-16 left-0 w-full bg-colorSix bg-opacity-95 shadow-lg z-40 animate-slide-down">
 					{navLinks.map((link) => (
 						<Link
 							key={link.to}
 							to={link.to}
-							className="block px-4 py-4 text-colorOne hover:text-colorTwo font-poppins font-semibold text-lg border-b border-colorOne"
+							className="block px-4 py-4 text-colorFive hover:text-colorOne font-poppins font-semibold text-lg border-b border-colorOne"
 							onClick={() => setIsOpen(false)}
 						>
 							{link.label}

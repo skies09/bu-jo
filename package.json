@@ -17,6 +17,7 @@
     "autoprefixer": "^10.4.21",
     "axios": "^0.26.0",
     "axios-auth-refresh": "^3.3.1",
+    "date-fns": "^4.1.0",
     "formik": "^2.4.6",
     "framer-motion": "^11.2.6",
     "postcss": "^8.5.3",
@@ -59,6 +60,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-datepicker": "^7.0.0",
     "tailwindcss": "^3.4.17"
   }
 }
