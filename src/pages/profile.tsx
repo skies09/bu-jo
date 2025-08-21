@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { getUser } from "../hooks/login.actions";
 import ProfileSection from "../components/profileComponents/ProfileSection";
+import AffirmationSection from "../components/profileComponents/AffirmationSection";
 
 const profileTabs = [
 	{ label: "Profile", key: "profile" },
@@ -22,7 +23,7 @@ const Profile = () => {
 	return (
 		<div
 			id="profile"
-			className="w-full min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-colorThree via-colorSix to-colorTwo"
+			className="w-full min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 via-slate-50 to-gray-50"
 			style={{ minHeight: "100vh" }}
 		>
 			<div className="pl-0 md:pl-56 flex justify-center items-center w-full">
@@ -36,54 +37,47 @@ const Profile = () => {
 								className={
 									`px-4 sm:px-6 py-2 rounded-t-lg font-semibold text-base sm:text-lg transition-colors duration-150 border-b-2 focus:outline-none flex-shrink` +
 									(activeTab === tab.key
-										? " bg-white text-colorFive border-colorOne shadow"
-										: " bg-white/60 text-colorOne border-transparent hover:bg-white")
+										? " bg-white text-primary-600 border-primary-500 shadow-lg"
+										: " bg-white/60 text-neutral-600 border-transparent hover:bg-white hover:text-neutral-800")
 								}
 							>
 								{tab.label}
 							</button>
 						))}
 					</div>
-					<div className="bg-white/80 rounded-b-xl p-8 w-full max-w-4xl min-h-[300px]">
+					<div className="bg-white/90 backdrop-blur-sm rounded-b-xl p-8 w-full max-w-4xl min-h-[300px] shadow-lg border border-neutral-200">
 						{activeTab === "profile" && <ProfileSection />}
 						{activeTab === "about" && (
 							<>
-								<h1 className="text-2xl font-bold mb-4 text-colorOne">
+								<h1 className="text-2xl font-bold mb-4 text-neutral-800">
 									About
 								</h1>
-								<p>About content goes here.</p>
+								<p className="text-neutral-700">About content goes here.</p>
 							</>
 						)}
-						{activeTab === "affirmations" && (
-							<>
-								<h1 className="text-2xl font-bold mb-4 text-colorOne">
-									Affirmations
-								</h1>
-								<p>Affirmations content goes here.</p>
-							</>
-						)}
+						{activeTab === "affirmations" && <AffirmationSection />}
 						{activeTab === "gratitude" && (
 							<>
-								<h1 className="text-2xl font-bold mb-4 text-colorOne">
+								<h1 className="text-2xl font-bold mb-4 text-neutral-800">
 									Gratitude
 								</h1>
-								<p>Gratitude content goes here.</p>
+								<p className="text-neutral-700">Gratitude content goes here.</p>
 							</>
 						)}
 						{activeTab === "passions" && (
 							<>
-								<h1 className="text-2xl font-bold mb-4 text-colorOne">
+								<h1 className="text-2xl font-bold mb-4 text-neutral-800">
 									Passions
 								</h1>
-								<p>Passions content goes here.</p>
+								<p className="text-neutral-700">Passions content goes here.</p>
 							</>
 						)}
 						{activeTab === "faves" && (
 							<>
-								<h1 className="text-2xl font-bold mb-4 text-colorOne">
+								<h1 className="text-2xl font-bold mb-4 text-neutral-800">
 									Faves Map
 								</h1>
-								<p>Favourites map content goes here.</p>
+								<p className="text-neutral-700">Favourites map content goes here.</p>
 							</>
 						)}
 					</div>
