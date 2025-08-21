@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { getUser } from "../hooks/login.actions";
 import ProfileSection from "../components/profileComponents/ProfileSection";
 import AffirmationSection from "../components/profileComponents/AffirmationSection";
+import GratitudeSection from "../components/profileComponents/GratitudeSection";
+import PassionSection from "../components/profileComponents/PassionSection";
+import FavoriteSection from "../components/profileComponents/FavoriteSection";
 
 const profileTabs = [
 	{ label: "Profile", key: "profile" },
@@ -56,30 +59,9 @@ const Profile = () => {
 							</>
 						)}
 						{activeTab === "affirmations" && <AffirmationSection />}
-						{activeTab === "gratitude" && (
-							<>
-								<h1 className="text-2xl font-bold mb-4 text-neutral-800">
-									Gratitude
-								</h1>
-								<p className="text-neutral-700">Gratitude content goes here.</p>
-							</>
-						)}
-						{activeTab === "passions" && (
-							<>
-								<h1 className="text-2xl font-bold mb-4 text-neutral-800">
-									Passions
-								</h1>
-								<p className="text-neutral-700">Passions content goes here.</p>
-							</>
-						)}
-						{activeTab === "faves" && (
-							<>
-								<h1 className="text-2xl font-bold mb-4 text-neutral-800">
-									Faves Map
-								</h1>
-								<p className="text-neutral-700">Favourites map content goes here.</p>
-							</>
-						)}
+						{activeTab === "gratitude" && <GratitudeSection />}
+						{activeTab === "passions" && <PassionSection />}
+						{activeTab === "faves" && <FavoriteSection />}
 					</div>
 				</div>
 			</div>
