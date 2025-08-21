@@ -5,6 +5,7 @@ import AffirmationSection from "../components/profileComponents/AffirmationSecti
 import GratitudeSection from "../components/profileComponents/GratitudeSection";
 import PassionSection from "../components/profileComponents/PassionSection";
 import FavoriteSection from "../components/profileComponents/FavoriteSection";
+import AboutSection from "../components/profileComponents/AboutSection";
 
 const profileTabs = [
 	{ label: "Profile", key: "profile" },
@@ -50,14 +51,7 @@ const Profile = () => {
 					</div>
 					<div className="bg-white/90 backdrop-blur-sm rounded-b-xl p-8 w-full max-w-4xl min-h-[300px] shadow-lg border border-neutral-200">
 						{activeTab === "profile" && <ProfileSection />}
-						{activeTab === "about" && (
-							<>
-								<h1 className="text-2xl font-bold mb-4 text-neutral-800">
-									About
-								</h1>
-								<p className="text-neutral-700">About content goes here.</p>
-							</>
-						)}
+						{activeTab === "about" && <AboutSection />}
 						{activeTab === "affirmations" && <AffirmationSection />}
 						{activeTab === "gratitude" && <GratitudeSection />}
 						{activeTab === "passions" && <PassionSection />}

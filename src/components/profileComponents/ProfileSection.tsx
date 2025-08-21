@@ -19,7 +19,6 @@ const ProfileSection: React.FC = () => {
 		name: user?.name || "",
 		username: user?.username || "",
 		email: user?.email || "",
-		bio: user?.bio || "",
 		date_of_birth: user?.date_of_birth || "",
 		theme: user?.theme || "auto",
 		avatar: null as File | null,
@@ -40,7 +39,6 @@ const ProfileSection: React.FC = () => {
 				name: user.name || "",
 				username: user.username || "",
 				email: user.email || "",
-				bio: user.bio || "",
 				date_of_birth: user.date_of_birth || "",
 				theme: user.theme || "auto",
 				avatar: null,
@@ -86,7 +84,6 @@ const ProfileSection: React.FC = () => {
 				name: user.name || "",
 				username: user.username || "",
 				email: user.email || "",
-				bio: user.bio || "",
 				date_of_birth: user.date_of_birth || "",
 				theme: user.theme || "auto",
 				avatar: null,
@@ -107,7 +104,6 @@ const ProfileSection: React.FC = () => {
 			data.append("name", form.name);
 			data.append("username", form.username);
 			data.append("email", form.email);
-			data.append("bio", form.bio);
 			data.append("date_of_birth", form.date_of_birth);
 			data.append("theme", form.theme);
 			if (form.avatar) data.append("avatar", form.avatar);
@@ -121,7 +117,6 @@ const ProfileSection: React.FC = () => {
 							name: form.name,
 							username: form.username,
 							email: form.email,
-							bio: form.bio,
 							date_of_birth: form.date_of_birth,
 							theme: form.theme,
 							avatar: avatarPreview || undefined,
@@ -207,16 +202,6 @@ const ProfileSection: React.FC = () => {
 						/>
 					</div>
 					<div>
-						<label className="block font-semibold mb-1">Bio</label>
-						<textarea
-							name="bio"
-							value={form.bio}
-							onChange={handleChange}
-							className="border rounded px-3 py-2 w-full"
-							disabled={!editing}
-						/>
-					</div>
-					<div>
 						<label className="block font-semibold mb-1">
 							Date of Birth
 						</label>
@@ -292,14 +277,6 @@ const ProfileSection: React.FC = () => {
 						<div className="text-gray-500 font-semibold">Email</div>
 						<div className="text-colorFive font-medium break-all">
 							{form.email}
-						</div>
-						<div className="text-gray-500 font-semibold">Bio</div>
-						<div className="text-colorFive font-medium whitespace-pre-line">
-							{form.bio || (
-								<span className="italic text-gray-400">
-									No bio
-								</span>
-							)}
 						</div>
 						<div className="text-gray-500 font-semibold">
 							Date of Birth
