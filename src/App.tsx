@@ -13,7 +13,10 @@ import Diary from "./pages/diary";
 import Navbar from "./components/navbar";
 import TopNav from "./components/topNav";
 import Profile from "./pages/profile";
-import Bullet from "./pages/bullet";
+import BulletPage from "./pages/bullet";
+import MotivationPage from "./pages/motivation";
+import GoalsPage from "./pages/goals";
+import PlansPage from "./pages/plans";
 import React from "react";
 import { useSelector } from "react-redux";
 
@@ -23,7 +26,10 @@ export const routeConfig = [
 	{ path: "/home", element: <Home />, protected: true },
 	{ path: "/profile", element: <Profile />, protected: true },
 	{ path: "/diary", element: <Diary />, protected: true },
-	{ path: "/bullet", element: <Bullet />, protected: true },
+	{ path: "/bullet", element: <BulletPage />, protected: true },
+	{ path: "/motivation", element: <MotivationPage />, protected: true },
+	{ path: "/goals", element: <GoalsPage />, protected: true },
+	{ path: "/plans", element: <PlansPage />, protected: true },
 ];
 
 function Layout({ children }: { children: React.ReactNode }) {

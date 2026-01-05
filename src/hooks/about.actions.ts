@@ -44,7 +44,6 @@ export interface About {
 	dreams_aspirations?: string;
 	future_plans?: string;
 	notes?: string;
-	is_public: boolean;
 	created: string;
 	updated: string;
 }
@@ -83,7 +82,6 @@ export interface AboutCreate {
 	dreams_aspirations?: string;
 	future_plans?: string;
 	notes?: string;
-	is_public?: boolean;
 }
 
 export interface AboutUpdate {
@@ -120,7 +118,6 @@ export interface AboutUpdate {
 	dreams_aspirations?: string;
 	future_plans?: string;
 	notes?: string;
-	is_public?: boolean;
 }
 
 export function useAboutApi() {

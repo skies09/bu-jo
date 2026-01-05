@@ -70,7 +70,6 @@ const AboutSection: React.FC = () => {
 		dreams_aspirations: "",
 		future_plans: "",
 		notes: "",
-		is_public: false,
 	});
 
 	// Load about data on mount
@@ -88,7 +87,7 @@ const AboutSection: React.FC = () => {
 	}, []);
 
 	// Handle form input changes
-	const handleInputChange = (field: keyof About, value: string | boolean) => {
+	const handleInputChange = (field: keyof About, value: string) => {
 		setFormData(prev => ({
 			...prev,
 			[field]: value
@@ -153,39 +152,21 @@ const AboutSection: React.FC = () => {
 
 	// Tab sections
 	const tabs = [
-		{ key: "personal", label: "Personal Info", icon: "👤" },
-		{ key: "background", label: "Background", icon: "📚" },
-		{ key: "interests", label: "Interests", icon: "🎯" },
-		{ key: "story", label: "Story", icon: "📖" },
-		{ key: "values", label: "Values", icon: "💎" },
-		{ key: "relationships", label: "Relationships", icon: "❤️" },
-		{ key: "career", label: "Career", icon: "💼" },
-		{ key: "health", label: "Health", icon: "🏃‍♀️" },
-		{ key: "creative", label: "Creative", icon: "🎨" },
-		{ key: "future", label: "Future", icon: "🚀" },
-		{ key: "notes", label: "Notes", icon: "📝" },
+		{ key: "personal", label: "Personal Info", icon: "fas fa-user" },
+		{ key: "background", label: "Background", icon: "fas fa-book" },
+		{ key: "interests", label: "Interests", icon: "fas fa-bullseye" },
+		{ key: "story", label: "Story", icon: "fas fa-book-open" },
+		{ key: "values", label: "Values", icon: "fas fa-gem" },
+		{ key: "relationships", label: "Relationships", icon: "fas fa-heart" },
+		{ key: "career", label: "Career", icon: "fas fa-briefcase" },
+		{ key: "health", label: "Health", icon: "fas fa-running" },
+		{ key: "creative", label: "Creative", icon: "fas fa-palette" },
+		{ key: "future", label: "Future", icon: "fas fa-rocket" },
+		{ key: "notes", label: "Notes", icon: "fas fa-sticky-note" },
 	];
 
-	// Render form field
-	const renderField = (field: keyof About, label: string, type: "text" | "textarea" | "checkbox" = "text", placeholder?: string) => {
-		// Handle boolean fields differently
-		if (field === "is_public" || type === "checkbox") {
-			return (
-				<div className="mb-4">
-					<label className="flex items-center">
-						<input
-							type="checkbox"
-							checked={formData[field] as boolean || false}
-							onChange={(e) => handleInputChange(field, e.target.checked)}
-							className="mr-2"
-							disabled={!isEditing}
-						/>
-						<span className="font-semibold text-neutral-700">{label}</span>
-					</label>
-				</div>
-			);
-		}
-
+		// Render form field
+	const renderField = (field: keyof About, label: string, type: "text" | "textarea" = "text", placeholder?: string) => {
 		// Handle string fields
 		const stringValue = (formData[field] as string) || "";
 		
@@ -304,7 +285,7 @@ const AboutSection: React.FC = () => {
 								: "bg-neutral-100 text-neutral-700 hover:bg-neutral-200"
 						}`}
 					>
-						<span className="mr-2">{tab.icon}</span>
+														<i className={`${tab.icon} mr-2`}></i>
 						{tab.label}
 					</button>
 				))}
@@ -570,12 +551,10 @@ const AboutSection: React.FC = () => {
 						{isEditing ? (
 							<>
 								{renderField("notes", "Notes", "textarea", "Any additional notes or thoughts...")}
-								{renderField("is_public", "Make this profile public", "checkbox")}
 							</>
 						) : (
 							<div className="space-y-6">
 								{renderField("notes", "Notes", "textarea")}
-								{renderField("is_public", "Profile Visibility", "checkbox")}
 								{!formData.notes && (
 									<div className="text-center py-8 text-neutral-500">
 										<p>No additional notes added yet. Click "Edit" to get started!</p>

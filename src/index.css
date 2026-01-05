@@ -61,3 +61,47 @@ code {
   background: var(--color-accent);
   color: #fff;
 }
+
+/* Override theme colors for login page */
+.login-page-container,
+.login-page-container * {
+  color: #FFF8E7 !important;
+}
+
+.login-page-container input::placeholder,
+.login-page-container textarea::placeholder {
+  color: #4B5563 !important;
+}
+
+/* Make password text darker */
+.login-page-container input[type="password"],
+.login-page-container input[type="text"][name="password"] {
+  color: #1F2937 !important;
+  -webkit-text-fill-color: #1F2937 !important;
+}
+
+/* Make all input text darker */
+.login-page-container input[type="text"],
+.login-page-container input[type="email"],
+.login-page-container input[type="text"][name="username"] {
+  color: #1F2937 !important;
+  -webkit-text-fill-color: #1F2937 !important;
+}
+
+/* Flashing border animation for focused inputs */
+@keyframes flash-border {
+  0%, 100% {
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    border-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.6);
+  }
+}
+
+.login-page-container input:focus,
+.login-page-container textarea:focus {
+  animation: flash-border 1s ease-in-out infinite;
+  outline: none !important;
+}
